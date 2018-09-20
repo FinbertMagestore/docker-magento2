@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  magento:
+    build: ./magento
+    image: magento
+    ports:
+      - 9090:80
+    environment:
+      BASE_URL: http://localhost.com:9090/
+      MAGENTO_DEV_MODE: developer
+    volumes:
+      - ./code/apps:/var/www/html
+      - ./code/tests:/var/www/html
+    networks:
+      webnet:
+        aliases:
+          - localhost.com
+
+  db:
+    image: mariadb
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: magento
+      MYSQL_DATABASE: magento
+    networks:
+      - webnet
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 9091:80
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: magento
+    networks:
+      - webnet
+networks:
+  webnet:
