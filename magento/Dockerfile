@@ -1,6 +1,5 @@
 FROM php:7.1-apache
 
-ENV MAGENTO_VERSION 2.2.6
 # php extensions to run Magento
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
