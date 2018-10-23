@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-sudo docker-compose down
+docker-compose down
+docker-compose rm -s -f
+docker-compose down --rmi all

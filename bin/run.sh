@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo docker-compose up -d
+docker-compose up

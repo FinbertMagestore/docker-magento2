@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo docker exec -u www-data -it dockermagento2_magento_1 /bin/bash
+docker exec -u root -it docker-magento2_magento_1 /bin/bash

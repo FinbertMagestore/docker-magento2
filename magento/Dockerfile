@@ -1,8 +1,6 @@
 FROM php:7.1-apache
 
-ENV MAGENTO_VERSION 2.2.5
-ENV INSTALL_DIR /var/www/html
-
+ENV MAGENTO_VERSION 2.2.6
 # php extensions to run Magento
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
@@ -36,14 +34,11 @@ RUN chmod +x /usr/local/bin/docker-php-entrypoint
 # Expose ports
 EXPOSE 80 443
 
-# Magento
-RUN cd /tmp && \
-  curl http://pubfiles.nexcess.net/magento/ce-packages/magento2-latest-with-samples.tar.gz -o $MAGENTO_VERSION.tar.gz && \
-  tar xvf $MAGENTO_VERSION.tar.gz -C $INSTALL_DIR
-
 # Back
 COPY run-apache /usr/local/bin/
 RUN chmod +x /usr/local/bin/run-apache
+
+COPY conf/php.ini /usr/local/etc/php/conf.d/
 
 CMD ["run-apache"]
 WORKDIR /var/www/html

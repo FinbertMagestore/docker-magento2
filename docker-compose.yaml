@@ -7,15 +7,13 @@ services:
     ports:
       - 9090:80
     environment:
-      BASE_URL: http://localhost.com:9090/
-      MAGENTO_DEV_MODE: developer
+      BASE_URL: http://magento2.com:9090/
     volumes:
-      - ./code/apps:/var/www/html
-      - ./code/tests:/var/www/html
+      - ./src:/var/www/html
     networks:
       webnet:
         aliases:
-          - localhost.com
+          - magento2.com
 
   db:
     image: mariadb
