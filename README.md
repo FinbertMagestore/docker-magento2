@@ -4,41 +4,31 @@ Docker image for Magento.
 ## Use batch script
 ### Build images
 ```bash
-bin/build
+./bin/build.sh
 ```
 
 ### Run service
 ```bash
-bin/run
+./bin/run.sh
+```
+
+### Install magento 2
+```bash
+./bin/ssh.sh
+./install_magento.sh
 ```
 
 ### Stop service
 ```bash
-bin/stop
+./bin/stop.sh
+```
+
+### Remove service
+```bash
+./bin/remove.sh
 ```
 
 ### SSH
 ```bash
-bin/ssh
-```
-
-## Use docker command line
-### Build images
-```bash
-sudo docker-compose build
-```
-
-### Run service
-```bash
-sudo docker-compose up -d
-```
-
-### Stop service
-```bash
-sudo docker-compose down
-```
-
-### SSH
-```bash
-sudo docker exec -u {username} -it {container_name} /bin/bash
+./bin/ssh.sh
 ```
