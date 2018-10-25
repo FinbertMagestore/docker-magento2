@@ -23,9 +23,9 @@ RUN a2enmod headers
 RUN a2enmod ssl
 
 # SSL
-#COPY server.crt /etc/ssl/certs/ssl-cert-snakeoil.pem
-#COPY server.key /etc/ssl/private/ssl-cert-snakeoil.key
-#RUN a2ensite default-ssl.conf
+COPY server.crt /etc/ssl/certs/ssl-cert-snakeoil.pem
+COPY server.key /etc/ssl/private/ssl-cert-snakeoil.key
+RUN a2ensite default-ssl.conf
 
 # Fix permission denied of execute files
 RUN chmod +x /usr/local/bin/docker-php-entrypoint
@@ -36,6 +36,8 @@ EXPOSE 80 443
 # Back
 COPY run-apache /usr/local/bin/
 RUN chmod +x /usr/local/bin/run-apache
+COPY install_magento.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/install_magento.sh
 
 COPY conf/php.ini /usr/local/etc/php/conf.d/
 

@@ -5,9 +5,10 @@ services:
     build: ./magento
     image: magento
     ports:
-      - 9090:80
+      - 80:80
+      - 443:443
     environment:
-      BASE_URL: http://magento2.com:9090/
+      BASE_URL: https://magento2.com/
     volumes:
       - ./src:/var/www/html
     networks:

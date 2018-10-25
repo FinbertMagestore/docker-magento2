@@ -1,4 +1,4 @@
 #!/bin/bash
-
+cp /usr/local/bin/install_magento.sh /var/www/html/install_magento.sh
 # Start apache2
 apache2-foreground

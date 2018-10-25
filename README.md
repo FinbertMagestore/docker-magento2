@@ -36,8 +36,9 @@
 - Had installed: Apache2, Php7.1 Magento2, MariaDb, Phpmyadmin, Composer
 - Links:
     + Magento2: 
-        + Fontend: http://magento2.com:9090/
-        + Backend: http://magento2.com:9090/admin
+        + Fontend: https://magento2.com/
+        + Backend: https://magento2.com/admin/
+        
             Username: admin
             
             Password: admin123
