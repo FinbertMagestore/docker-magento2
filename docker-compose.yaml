@@ -7,6 +7,8 @@ services:
     ports:
       - 80:80
       - 443:443
+    depends_on:
+      - db
     environment:
       BASE_URL: https://magento2.com/
     volumes:
