@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source env
+source .env
 cp data/prepare_data/$MAGENTO_VERSION data/prepare_data/magento2.sql
 
 # install nginx
