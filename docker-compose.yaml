@@ -19,7 +19,7 @@ services:
           - magento2.com
 
   db:
-    build: ./db
+    build: ./data
     ports:
       - 3307:3306
     environment:
