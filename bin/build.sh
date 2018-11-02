@@ -20,5 +20,6 @@ fi
 sudo ln -s /etc/nginx/sites-available/$NGINX_CONF /etc/nginx/sites-enabled/
 sudo service nginx restart
 
+sudo cp magento/install_magento.sh src/
 # stop then remove all container start by docker composer
  docker-compose build

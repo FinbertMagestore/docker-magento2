@@ -36,8 +36,6 @@ EXPOSE 80 443
 # Back
 COPY run-apache /usr/local/bin/
 RUN chmod +x /usr/local/bin/run-apache
-COPY install_magento.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/install_magento.sh
 
 COPY conf/php.ini /usr/local/etc/php/conf.d/
 
