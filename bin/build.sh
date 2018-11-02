@@ -17,7 +17,9 @@ if [[ ! -f /etc/nginx/sites-available/$NGINX_CONF ]]; then
   echo "file site available not exist"
   exit
 fi
-sudo ln -s /etc/nginx/sites-available/$NGINX_CONF /etc/nginx/sites-enabled/
+if [[ ! -f /etc/nginx/sites-enabled/$NGINX_CONF ]]; then
+  sudo ln -s /etc/nginx/sites-available/$NGINX_CONF /etc/nginx/sites-enabled/
+fi
 sudo service nginx restart
 
 sudo cp magento/install_magento.sh src/
