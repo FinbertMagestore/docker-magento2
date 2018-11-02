@@ -1,7 +1,5 @@
 #!/bin/bash
-source "$APACHE_ENVVARS"
 tar xvf magento2.tar.gz
-chown -R $APACHE_RUN_USER:$APACHE_RUN_USER ./
 chmod -R 777 ./
 # Install magento
 php bin/magento setup:install --use-rewrites=1 \
