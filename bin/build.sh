@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 source .env
-cp data/prepare_data/$MAGENTO_VERSION data/prepare_data/magento2.sql
+cp data/prepare_data/$MAGENTO_VERSION.sql data/prepare_data/magento2.sql
 
 # install nginx
 sudo apt update
