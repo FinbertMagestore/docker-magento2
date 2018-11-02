@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [[ $1 ]]; then
+if [[ ! $1 ]]; then
   echo "need add param name user to ssh"
   exit
 fi
