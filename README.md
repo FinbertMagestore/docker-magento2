@@ -6,9 +6,12 @@
 ./bin/build.sh
 ```
 
+## Copy src magento to folder `src/magento2.tar.gz`
+
 ### Run service
 ```bash
-./bin/run.sh
+./bin/run.sh -d #Run containers in the background, print new container names
+./bin/run.sh #Run containers, show output to console
 ```
 
 ### Install magento 2
