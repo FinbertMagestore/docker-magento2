@@ -14,6 +14,12 @@
 ./bin/run.sh #Run containers, show output to console
 ```
 
+## Provide permission edit for user `www-data` to in docker container folder `/var/www/html`
+```bash
+./bin/ssh.sh root
+chown www-data:www-data ./
+```
+
 ### Install magento 2
 ```bash
 ./bin/ssh.sh
