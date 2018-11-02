@@ -41,7 +41,6 @@ COPY conf/php.ini /usr/local/etc/php/conf.d/
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN chmod +x /usr/local/bin/composer
-RUN composer --version
 
 CMD ["run-apache"]
 WORKDIR /var/www/html
