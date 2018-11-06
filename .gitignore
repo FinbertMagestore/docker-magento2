@@ -1,0 +1,5 @@
+.idea/
+*.tar.gz
+src/
+data/mysql
+magento2.sql
