@@ -1,1 +1,0 @@
-Place magento2.tar.gz and code extension
