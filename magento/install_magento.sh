@@ -3,19 +3,24 @@ tar xvf magento2.tar.gz
 chmod -R 777 ./
 # Install magento
 php bin/magento setup:install --use-rewrites=1 \
-    --db-host=db \
-    --db-name=magento \
-    --db-password=magento \
-    --db-prefix=m_ \
-    --admin-firstname=admin1 \
-    --admin-lastname=admin1 \
-    --admin-email=admin1@localhost.com \
-    --admin-user=admin1 \
-    --admin-password=admin123 \
-    --base-url=$BASE_URL \
+    --db-host=$MYSQL_HOST \
+    --db-name=$MYSQL_DATABASE \
+    --db-password=$MYSQL_PASSWORD \
+    --admin-firstname=$MAGENTO_ADMIN_FIRSTNAME \
+    --admin-lastname=$MAGENTO_ADMIN_LASTNAME \
+    --admin-email=$MAGENTO_ADMIN_EMAIL \
+    --admin-user=$MAGENTO_ADMIN_USERNAME \
+    --admin-password=$MAGENTO_ADMIN_PASSWORD \
+    --base-url=$MAGENTO_URL \
     --backend-frontname=admin \
-    --admin-use-security-key=0 \
-    --key=8f1e9249ca82c072122ae8d08bc0b0cf
+    --language=$MAGENTO_LOCALE \
+    --currency=$MAGENTO_DEFAULT_CURRENCY \
+    --timezone=$MAGENTO_TIMEZONE \
+    --use-rewrites=1 \
+    --use-secure=1 \
+    --base-url-secure=$MAGENTO_SECURE_URL \
+    --use-secure-admin=1 \
+    --admin-use-security-key=0
 
 # Update config for testing
 php bin/magento config:set cms/wysiwyg/enabled disabled

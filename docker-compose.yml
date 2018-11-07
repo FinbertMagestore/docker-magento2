@@ -8,8 +8,8 @@ services:
       - 9092:443
     depends_on:
       - db
-    environment:
-      BASE_URL: https://magento2.com/
+    env_file:
+      - .env
     volumes:
       - ./src:/var/www/html
     networks:
@@ -21,9 +21,8 @@ services:
     build: ./data
     ports:
       - 3307:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: magento
-      MYSQL_DATABASE: magento
+    env_file:
+      - .env
     volumes:
       - ./data/mysql:/var/lib/mysql
     networks:
