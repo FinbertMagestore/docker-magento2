@@ -3,7 +3,6 @@ version: '3'
 services:
   magento:
     build: ./magento
-    image: magento
     ports:
       - 9090:80
       - 9092:443
