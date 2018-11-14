@@ -18,7 +18,7 @@ if [[ ! -f magento/magento2.tar.gz ]]; then
 fi
 
 if [[ ! -f src/magento2.tar.gz ]]; then
-    sudo cp magento/magento2.tar.gz src/
+    cp magento/magento2.tar.gz src/
 fi
 
 source .env
@@ -48,4 +48,4 @@ sudo service nginx restart
 
 sudo cp magento/install_magento.sh src/
 # stop then remove all container start by docker composer
- docker-compose build
+docker-compose build

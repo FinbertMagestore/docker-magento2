@@ -58,7 +58,7 @@ SSH to docker container with user: `root` or `www-data`. Default is `www-data`
 - Install nginx in host (nginx reverse proxy)
 - Links:
     - Magento2: 
-        - Fontend: https://magento2.com/
+        - Frontend: https://magento2.com/
         - Backend: https://magento2.com/admin/
         
             Username: admin
