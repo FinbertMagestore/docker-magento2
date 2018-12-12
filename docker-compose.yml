@@ -2,7 +2,9 @@ version: '3'
 
 services:
   magento:
-    build: ./magento
+    build:
+      context: ./magento
+    container_name: docker-magento2_magento_1
     ports:
       - 9090:80
       - 9092:443
@@ -18,13 +20,15 @@ services:
           - magento2.com
 
   db:
-    build: ./data
-    ports:
-      - 3307:3306
+#    build: ./data
+    image: ngovanhuy0241/docker-magento-multiple-db:2.2.6
+    container_name: docker-magento2_db_1
+#    ports:
+#      - 3307:3306
     env_file:
       - .env
-    volumes:
-      - ./data/mysql:/var/lib/mysql
+#    volumes:
+#      - ./data/mysql:/var/lib/mysql
     networks:
       - webnet
 

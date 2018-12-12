@@ -6,7 +6,6 @@ php bin/magento setup:install --use-rewrites=1 \
     --db-host=$MYSQL_HOST \
     --db-name=$MYSQL_DATABASE \
     --db-password=$MYSQL_PASSWORD \
-    --db-prefix=m_ \
     --admin-firstname=$MAGENTO_ADMIN_FIRSTNAME \
     --admin-lastname=$MAGENTO_ADMIN_LASTNAME \
     --admin-email=$MAGENTO_ADMIN_EMAIL \
