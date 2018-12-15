@@ -1,10 +1,5 @@
 FROM ngovanhuy0241/docker-magento-multiple-magento:php71
 
-# SSL
-COPY server.crt /etc/ssl/certs/ssl-cert-snakeoil.pem
-COPY server.key /etc/ssl/private/ssl-cert-snakeoil.key
-RUN a2ensite default-ssl.conf
-
 # Mailhog
 RUN curl -Lsf 'https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz' | tar -C '/usr/local' -xvzf -
 ENV PATH /usr/local/go/bin:$PATH
@@ -22,7 +17,6 @@ EXPOSE 80 443
 COPY run-apache /usr/local/bin/
 RUN chmod +x /usr/local/bin/run-apache
 
-# Php.ini
 COPY conf/php.ini /usr/local/etc/php/conf.d/
 
 # Composer install
