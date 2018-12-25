@@ -27,7 +27,7 @@ cp data/prepare_data/$MAGENTO_VERSION.sql data/prepare_data/magento2.sql
 # install nginx
 sudo apt update
 sudo apt install nginx -y
-sudo ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx Full'
 sudo service nginx restart
 
 # init nginx reverse proxy
