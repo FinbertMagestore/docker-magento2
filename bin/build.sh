@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
 
+source .env
+
 # init folder mount docker
 mkdir -p src
 mkdir -p data/mysql
 
-# remove all persist data
-sudo rm -rf data/mysql/*
-sudo rm -rf src/*
-sudo rm -rf src/.*
-rm data/prepare_data/magento2.sql
 sudo rm /etc/nginx/sites-available/nginx-magento2-docker*
 sudo rm /etc/nginx/sites-enabled/nginx-magento2-docker*
 
@@ -21,14 +18,15 @@ if [[ ! -f src/magento2.tar.gz ]]; then
     cp magento/magento2.tar.gz src/
 fi
 
-source .env
-cp data/prepare_data/$MAGENTO_VERSION.sql data/prepare_data/magento2.sql
-
 # install nginx
-sudo apt update
-sudo apt install nginx -y
-sudo ufw allow 'Nginx Full'
-sudo service nginx restart
+if ! which nginx > /dev/null 2>&1; then
+    echo "Nginx installing ..."
+    sudo apt update
+    sudo apt install nginx -y
+    sudo ufw allow 'Nginx Full'
+    sudo service nginx restart
+fi
+echo "Nginx installed."
 
 # init nginx reverse proxy
 sudo mkdir -p /etc/nginx/ssl
