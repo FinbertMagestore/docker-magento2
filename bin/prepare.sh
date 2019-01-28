@@ -14,8 +14,6 @@ function get_version_php() {
         php_version="7.1"
     elif [[ ${1} == 2.1* ]]; then
         php_version="7.0"
-    elif [[ ${1} == 1.* ]]; then
-        php_version="5.6"
     fi
     echo ${php_version}
 }
@@ -96,23 +94,30 @@ function check_install_pwa_studio() {
 }
 
 function prepare_environment_for_once_version_magento() {
-        if [[ -f docker-compose.yml ]]; then
-            local line_number_image_name_db=`awk '/# image_name_db/{ print NR; exit }' docker-compose.yml`
-            if [[ ! -z ${line_number_image_name_db} ]]; then
-                local is_install_pwa_studio=`check_install_pwa_studio ${MAGENTO_VERSION}`
-                if [[ ${is_install_pwa_studio} = '1' ]]; then
-                    bash -c "sed -i '${line_number_image_name_db}s/.*/    image: ngovanhuy0241\/docker-magento-multiple-db:${MAGENTO_VERSION}-pwa # image_name_db/' docker-compose.yml"
-                else
-                    bash -c "sed -i '${line_number_image_name_db}s/.*/    image: ngovanhuy0241\/docker-magento-multiple-db:${MAGENTO_VERSION} # image_name_db/' docker-compose.yml"
-                fi
+    if [[ -f docker-compose.yml ]]; then
+        local line_number_image_name_db=`awk '/# image_name_db/{ print NR; exit }' docker-compose.yml`
+        if [[ ! -z ${line_number_image_name_db} ]]; then
+            local is_install_pwa_studio=`check_install_pwa_studio ${MAGENTO_VERSION}`
+            if [[ ${is_install_pwa_studio} = '1' ]]; then
+                bash -c "sed -i '${line_number_image_name_db}s/.*/    image: ngovanhuy0241\/docker-magento-multiple-db:${MAGENTO_VERSION}-pwa # image_name_db/' docker-compose.yml"
+            else
+                bash -c "sed -i '${line_number_image_name_db}s/.*/    image: ngovanhuy0241\/docker-magento-multiple-db:${MAGENTO_VERSION} # image_name_db/' docker-compose.yml"
             fi
         fi
+    fi
 
-        if [[ -f .env ]]; then
-            local line_number_name_db=`awk '/MYSQL_DATABASE/{ print NR; exit }' .env`
-            local port_service_docker=`get_port_service_docker "${MAGENTO_VERSION}"`
-            bash -c "sed -i '${line_number_name_db}s/.*/MYSQL_DATABASE=magento${port_service_docker}/' .env"
-        fi
+    if [[ -f .env ]]; then
+        local line_number_name_db=`awk '/MYSQL_DATABASE/{ print NR; exit }' .env`
+        local port_service_docker=`get_port_service_docker "${MAGENTO_VERSION}"`
+        bash -c "sed -i '${line_number_name_db}s/.*/MYSQL_DATABASE=magento${port_service_docker}/' .env"
+    fi
+    
+    if [[ -f 'magento/Dockerfile' ]]; then
+        local line_number_image_name_magento=`awk '/FROM/{ print NR; exit }' .env`
+        local php_version=`get_version_php "${MAGENTO_VERSION}"`
+        bash -c "sed -i '${line_number_image_name_magento}s/.*/FROM ngovanhuy0241/docker-magento-multiple-magento:php${php_version//./}/' .env"
+        
+    fi
 }
 
 function main() {

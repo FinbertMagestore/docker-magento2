@@ -11,11 +11,11 @@ function calculate_time_run_command() {
 }
 
 function print_site_magento() {
-    print_status "Site magento:"
+    echo "Site magento:"
     echo
     echo "Magento version ${MAGENTO_VERSION}"
-    echo "Frontend: https://magento2.com/"
-    echo "Backend: https://magento2.com/admin"
+    echo "Frontend: ${MAGENTO_SECURE_URL}"
+    echo "Backend: ${MAGENTO_SECURE_URL}admin"
     echo
     local ipAddress=`hostname -I | cut -f1 -d' '`
     echo "Database: http://${ipAddress}:9091"

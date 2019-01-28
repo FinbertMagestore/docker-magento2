@@ -42,5 +42,13 @@ services:
       PMA_PASSWORD: magento
     networks:
       - webnet
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 1027:1025
+      - 8027:8025
+    networks:
+      - webnet
 networks:
   webnet:
