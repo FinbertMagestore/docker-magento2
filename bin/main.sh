@@ -20,6 +20,8 @@ function print_site_magento() {
     local ipAddress=`hostname -I | cut -f1 -d' '`
     echo "Database: http://${ipAddress}:9091"
     echo "Database name: ${MYSQL_DATABASE}"
+    echo
+    echo "Mail: http://${ipAddress}:8027"
 }
 
 
