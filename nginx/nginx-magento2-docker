@@ -4,13 +4,13 @@ upstream magento2_ssl {
 
 server {
     listen 80;
-    server_name magento2.com;
+    server_name m2.io;
     return 301 https://$host$request_uri;
 }
 
 server {
   listen 443;
-  server_name magento2.com;
+  server_name m2.com;
   ssl_certificate /etc/nginx/ssl/magento2_ssl.crt;
   ssl_certificate_key /etc/nginx/ssl/magento2_ssl.key;
   ssl on;
@@ -35,7 +35,7 @@ upstream phpmyadmin {
 
 server {
     listen 80;
-    server_name phpmyadmin.magento2.com;
+    server_name db.m2.io;
 
     location / {
         proxy_pass http://phpmyadmin ;
