@@ -9,15 +9,6 @@ mkdir -p data/mysql
 sudo rm /etc/nginx/sites-available/nginx-magento2-docker*
 sudo rm /etc/nginx/sites-enabled/nginx-magento2-docker*
 
-if [[ ! -f magento/magento2.tar.gz ]]; then
-  echo "Please place file magento2.tar.gz at folder magento"
-  exit
-fi
-
-if [[ ! -f src/magento2.tar.gz ]]; then
-    cp magento/magento2.tar.gz src/
-fi
-
 # install nginx
 if ! which nginx > /dev/null 2>&1; then
     echo "Nginx installing ..."

@@ -113,10 +113,9 @@ function prepare_environment_for_once_version_magento() {
     fi
     
     if [[ -f 'magento/Dockerfile' ]]; then
-        local line_number_image_name_magento=`awk '/FROM/{ print NR; exit }' .env`
+        local line_number_image_name_magento=1
         local php_version=`get_version_php "${MAGENTO_VERSION}"`
-        bash -c "sed -i '${line_number_image_name_magento}s/.*/FROM ngovanhuy0241/docker-magento-multiple-magento:php${php_version//./}/' .env"
-        
+        bash -c "sed -i '${line_number_image_name_magento}s/.*/FROM ngovanhuy0241\/docker-magento-multiple-magento:php${php_version//./}/' magento/Dockerfile"
     fi
 }
 

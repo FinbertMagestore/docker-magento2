@@ -17,3 +17,4 @@ fi
 if [[ ! -f  ${MAGENTO_FILENAME} ]]; then
     wget -O ${MAGENTO_FILENAME} ${MAGENTO_DOWNLOAD_URL}
 fi
+cp ${MAGENTO_FILENAME} src/magento2.tar.gz
