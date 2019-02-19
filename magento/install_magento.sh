@@ -28,4 +28,4 @@ php bin/magento config:set admin/security/admin_account_sharing 1
 php bin/magento config:set admin/captcha/enable 0
 
 php bin/magento deploy:mode:set developer
-php bin/magento setup:static-content:deploy -f
+#php bin/magento setup:static-content:deploy -f

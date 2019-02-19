@@ -26,6 +26,7 @@ function print_site_magento() {
 
 
 function main() {
+    source bin/prepare.sh
     source bin/download_magento.sh
     source bin/build.sh
     source bin/run.sh

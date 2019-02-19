@@ -119,7 +119,48 @@ function prepare_environment_for_once_version_magento() {
     fi
 }
 
+function prepare_folder() {
+    # init folder mount docker
+    mkdir -p src
+    mkdir -p data/mysql
+
+    cp magento/install_magento.sh src/
+}
+
+function prepare_nginx() {
+    sudo rm -f /etc/nginx/sites-available/nginx-magento2-docker
+    sudo rm -f /etc/nginx/sites-enabled/nginx-magento2-docker
+
+    # install nginx
+    if ! which nginx > /dev/null 2>&1; then
+        echo "Nginx installing ..."
+        sudo apt update
+        sudo apt install nginx -y
+        sudo ufw allow 'Nginx Full'
+        sudo service nginx restart
+    fi
+    echo "Nginx installed."
+
+    # init nginx reverse proxy
+    sudo mkdir -p /etc/nginx/ssl
+    sudo cp magento/server.crt /etc/nginx/ssl/magento2_ssl.crt
+    sudo cp magento/server.key /etc/nginx/ssl/magento2_ssl.key
+
+    NGINX_CONF=nginx-magento2-docker
+    sudo cp nginx/$NGINX_CONF /etc/nginx/sites-available
+    if [[ ! -f /etc/nginx/sites-available/$NGINX_CONF ]]; then
+      echo "file site available not exist"
+      exit
+    fi
+    if [[ ! -f /etc/nginx/sites-enabled/$NGINX_CONF ]]; then
+      sudo ln -s /etc/nginx/sites-available/$NGINX_CONF /etc/nginx/sites-enabled/
+    fi
+    sudo service nginx restart
+}
+
 function main() {
+    prepare_nginx
+    prepare_folder
     prepare_environment_for_once_version_magento
 }
 
